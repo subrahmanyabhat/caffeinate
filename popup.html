@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="outer-card">
+  <div class="wrap">
+
+    <header>
+      <div class="header-left">
+        <svg class="cup cup-sm" width="26" height="29" viewBox="0 0 90 100" aria-hidden="true">
+          <g class="steam-group">
+            <path class="steam s1" d="M32 30 Q28 22 32 16 Q36 10 32 4"/>
+            <path class="steam s2" d="M45 30 Q41 22 45 16 Q49 10 45 4"/>
+            <path class="steam s3" d="M58 30 Q54 22 58 16 Q62 10 58 4"/>
+          </g>
+          <rect x="22" y="40" width="46" height="42" rx="6" class="cup-body"/>
+          <rect x="26" y="44" width="38" height="9" rx="3" class="cup-coffee"/>
+          <path d="M68 48 Q82 48 82 60 Q82 72 68 72" class="cup-handle"/>
+        </svg>
+        <span class="title">Caffeinate</span>
+      </div>
+      <button class="badge off" id="statusBadge">
+        <span class="badge-dot" id="badgeDot"></span>
+        <span id="badgeLabel">OFF</span>
+      </button>
+    </header>
+
+    <!-- Status card (main toggle) -->
+    <div class="status-card off" id="mainToggle" role="button" tabindex="0">
+      <svg class="cup cup-lg" width="56" height="62" viewBox="0 0 90 100" aria-hidden="true">
+        <g class="steam-group">
+          <path class="steam s1" d="M32 30 Q28 22 32 16 Q36 10 32 4"/>
+          <path class="steam s2" d="M45 30 Q41 22 45 16 Q49 10 45 4"/>
+          <path class="steam s3" d="M58 30 Q54 22 58 16 Q62 10 58 4"/>
+        </g>
+        <rect x="22" y="40" width="46" height="42" rx="6" class="cup-body"/>
+        <rect x="26" y="44" width="38" height="9" rx="3" class="cup-coffee"/>
+        <path d="M68 48 Q82 48 82 60 Q82 72 68 72" class="cup-handle"/>
+      </svg>
+      <div class="status-text">
+        <div class="status-big" id="mainToggleLabel">Caffeinate</div>
+        <div class="status-sub" id="statusLine">Tap to keep your screen awake</div>
+      </div>
+    </div>
+
+    <!-- Stop after -->
+    <div class="section-label">Stop after</div>
+    <div class="timer-row">
+      <button class="timer-btn" data-sec="1800">30m</button>
+      <button class="timer-btn" data-sec="3600">1h</button>
+      <button class="timer-btn" data-sec="7200">2h</button>
+      <button class="timer-btn" data-sec="14400">4h</button>
+      <button class="timer-btn" data-sec="">∞</button>
+    </div>
+
+    <!-- Keep screen lit -->
+    <div class="option-card">
+      <div class="option-text">
+        <span class="option-name">Keep screen lit</span>
+        <span class="option-desc">Display stays on, not just the system</span>
+      </div>
+      <div class="toggle" id="screenOnToggle"></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="countdown" id="countdown"></div>
+    <a class="support-link" href="https://buymeacoffee.com/subrahmanya" target="_blank">Made with ❤️ · Support developer</a>
+  </footer>
+  </div><!-- /outer-card -->
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 336px;
+  background: #110904;
+  color: #efe0cc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  padding: 8px;
+}
+
+.outer-card {
+  background: #1e1108;
+  border-radius: 18px;
+  border: 1px solid #3d2518;
+  overflow: hidden;
+}
+
+.wrap {
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Header ── */
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.header-left { display: flex; align-items: center; gap: 9px; }
+.title { font-size: 17px; font-weight: 700; color: #efe0cc; letter-spacing: -0.01em; }
+
+.badge {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 5px 14px; border-radius: 20px;
+  background: #2e1c10; color: #7a5e4a;
+  border: 1px solid #3d2518;
+  cursor: pointer; transition: all 0.15s;
+}
+.badge.on { background: #c47a5a; color: #fff; border-color: #c47a5a; }
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #7a5e4a; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.badge.on .badge-dot { background: rgba(255,255,255,0.85); }
+
+/* ── Status card (main toggle) ── */
+.status-card {
+  background: #271508;
+  border-radius: 16px;
+  padding: 18px 16px;
+  display: flex; align-items: center; gap: 16px;
+  border: 1px solid #3d2518;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+.status-card:hover { background: #2e1c0c; }
+.status-card:active { background: #331e0e; }
+
+.status-big {
+  font-size: 26px; font-weight: 700;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #efe0cc; line-height: 1.1;
+  margin-bottom: 5px;
+}
+.status-sub { font-size: 13px; color: #9a7a68; line-height: 1.3; }
+
+/* ── Cup shared styles ── */
+.cup-body   { fill: #a07050; }
+.cup-coffee { fill: #c47a5a; }
+.cup-handle { fill: none; stroke: #a07050; stroke-width: 5; }
+.steam      { fill: none; stroke: #c47a5a; stroke-width: 3; stroke-linecap: round; opacity: 0; }
+
+/* Active cup (not .off) */
+.status-card:not(.off) .cup-body   { fill: #c47a5a; }
+.status-card:not(.off) .cup-coffee { fill: #e08050; }
+.status-card:not(.off) .cup-handle { stroke: #c47a5a; }
+.status-card:not(.off) .s1 { animation: rise 2.2s ease-in-out infinite; }
+.status-card:not(.off) .s2 { animation: rise 2.2s ease-in-out infinite 0.7s; }
+.status-card:not(.off) .s3 { animation: rise 2.2s ease-in-out infinite 1.4s; }
+
+/* Header cup (small, always muted) */
+.cup-sm .cup-body   { fill: #7a5840; }
+.cup-sm .cup-coffee { fill: #a07050; }
+.cup-sm .cup-handle { stroke: #7a5840; }
+.cup-sm .steam      { opacity: 0; animation: none !important; }
+
+@keyframes rise {
+  0%   { opacity: 0; transform: translateY(5px) scaleY(0.6); }
+  30%  { opacity: 0.75; }
+  70%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-10px) scaleY(1.1); }
+}
+.steam { transform-box: fill-box; transform-origin: bottom; }
+
+/* ── Section label ── */
+.section-label {
+  font-size: 11px; font-weight: 700;
+  color: #7a5e4a;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: -4px;
+}
+
+/* ── Timer buttons ── */
+.timer-row { display: flex; gap: 6px; }
+.timer-btn {
+  flex: 1; padding: 12px 0;
+  border-radius: 12px;
+  border: 1px solid #3d2518;
+  background: #271508;
+  color: #9a7a68;
+  font-family: inherit; font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.timer-btn:hover { border-color: #c47a5a; color: #c47a5a; }
+.timer-btn.active {
+  border-color: #c47a5a;
+  background: #c47a5a;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Keep screen lit card ── */
+.option-card {
+  background: #271508;
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  border: 1px solid #3d2518;
+}
+.option-text { display: flex; flex-direction: column; gap: 3px; }
+.option-name { font-size: 14px; font-weight: 600; color: #efe0cc; }
+.option-desc { font-size: 11px; color: #7a5e4a; }
+
+/* ── Toggle switch ── */
+.toggle {
+  width: 48px; height: 28px; border-radius: 14px;
+  background: #3d2518;
+  position: relative; cursor: pointer; flex-shrink: 0;
+  transition: background 0.15s;
+  border: none;
+}
+.toggle::after {
+  content: ''; position: absolute;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; top: 4px; left: 4px;
+  transition: left 0.15s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.toggle.on { background: #c47a5a; }
+.toggle.on::after { left: 24px; }
+
+/* ── Footer ── */
+footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px 13px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.countdown { font-size: 13px; color: #7a5e4a; min-width: 90px; font-weight: 500; }
+.countdown .n { color: #c47a5a; font-size: 15px; font-weight: 700; }
+
+.support-link {
+  font-size: 11px; font-weight: 500;
+  color: #7a5e4a;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.12s;
+}
+.support-link:hover { color: #c47a5a; }
