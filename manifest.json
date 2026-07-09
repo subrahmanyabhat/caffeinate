@@ -1,9 +1,12 @@
 {
   "manifest_version": 3,
   "name": "Caffeinate — Keep Screen Awake",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Keep your screen awake. Set a timer or run forever — one tap to start, one to stop.",
   "permissions": ["power", "storage", "alarms", "offscreen"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_title": "Caffeinate",
