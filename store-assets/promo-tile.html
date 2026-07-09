@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 440px; height: 280px;
+  background: #0a0503;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 32px 28px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden; position: relative;
+}
+.glow {
+  position: absolute; width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,122,90,0.15) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.left { position: relative; z-index: 1; }
+.logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.logo-text { font-size: 20px; font-weight: 700; color: #efe0cc; }
+h1 { font-size: 34px; font-weight: 300; font-family: Georgia, serif; color: #efe0cc; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 10px; }
+h1 strong { color: #c47a5a; font-weight: 700; }
+p { font-size: 13px; color: #7a5e4a; line-height: 1.5; }
+
+.right { position: relative; z-index: 1; }
+.mini-popup {
+  width: 160px; background: #1e1108; border-radius: 14px;
+  border: 1px solid #3d2518; overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(196,122,90,0.12);
+}
+.mp-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mp-title { font-size: 12px; font-weight: 700; color: #efe0cc; }
+.mp-badge { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 10px; background: #c47a5a; color: #fff; }
+.mp-card { margin: 8px; background: #2e1508; border-radius: 10px; padding: 10px; border: 1px solid #c47a5a33; display: flex; align-items: center; gap: 8px; }
+.mp-label { font-size: 13px; font-weight: 700; font-family: Georgia, serif; color: #efe0cc; }
+.mp-sub { font-size: 9px; color: #9a7a68; margin-top: 2px; }
+.mp-btns { display: flex; gap: 4px; padding: 0 8px 8px; }
+.mp-btn { flex: 1; padding: 6px 0; border-radius: 7px; border: 1px solid #3d2518; background: #271508; color: #9a7a68; font-size: 10px; font-weight: 600; text-align: center; }
+.mp-btn.a { background: #c47a5a; border-color: #c47a5a; color: #fff; }
+.mp-foot { padding: 6px 10px 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+.mp-countdown { font-size: 10px; color: #c47a5a; font-weight: 700; }
+
+.cup-body { fill: #c47a5a; }
+.cup-coffee { fill: #e08050; }
+.cup-handle { fill: none; stroke: #c47a5a; stroke-width: 5; }
+.steam { fill: none; stroke: #c47a5a; stroke-width: 3; stroke-linecap: round; }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="left">
+  <div class="logo-row">
+    <svg width="28" height="31" viewBox="0 0 90 100">
+      <path class="steam" d="M32 30 Q28 22 32 16 Q36 10 32 4" opacity="0.6"/>
+      <path class="steam" d="M45 30 Q41 22 45 16 Q49 10 45 4" opacity="0.4"/>
+      <path class="steam" d="M58 30 Q54 22 58 16 Q62 10 58 4" opacity="0.5"/>
+      <rect x="22" y="40" width="46" height="42" rx="6" class="cup-body"/>
+      <rect x="26" y="44" width="38" height="9" rx="3" class="cup-coffee"/>
+      <path d="M68 48 Q82 48 82 60 Q82 72 68 72" class="cup-handle"/>
+    </svg>
+    <span class="logo-text">Caffeinate</span>
+  </div>
+  <h1>Keep your<br>screen <strong>awake.</strong></h1>
+  <p>One tap. No sleep.<br>Timer presets or forever.</p>
+</div>
+<div class="right">
+  <div class="mini-popup">
+    <div class="mp-head">
+      <span class="mp-title">Caffeinate</span>
+      <span class="mp-badge">ON</span>
+    </div>
+    <div class="mp-card">
+      <svg width="28" height="31" viewBox="0 0 90 100">
+        <path class="steam" d="M32 30 Q28 22 32 16 Q36 10 32 4" opacity="0.7"/>
+        <path class="steam" d="M45 30 Q41 22 45 16 Q49 10 45 4" opacity="0.5"/>
+        <rect x="22" y="40" width="46" height="42" rx="6" class="cup-body"/>
+        <rect x="26" y="44" width="38" height="9" rx="3" class="cup-coffee"/>
+        <path d="M68 48 Q82 48 82 60 Q82 72 68 72" class="cup-handle"/>
+      </svg>
+      <div>
+        <div class="mp-label">Caffeinated</div>
+        <div class="mp-sub">Screen staying awake</div>
+      </div>
+    </div>
+    <div class="mp-btns">
+      <div class="mp-btn">30m</div>
+      <div class="mp-btn a">1h</div>
+      <div class="mp-btn">2h</div>
+      <div class="mp-btn">∞</div>
+    </div>
+    <div class="mp-foot">
+      <div class="mp-countdown">58m 32s left</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 128px; height: 128px;
+  background: #1a0d05;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+  border-radius: 28px;
+}
+.glow {
+  position: absolute; width: 100px; height: 100px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,122,90,0.35) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+svg { position: relative; z-index: 1; }
+.cup-body { fill: #c47a5a; }
+.cup-coffee { fill: #e08050; }
+.cup-handle { fill: none; stroke: #c47a5a; stroke-width: 7; stroke-linecap: round; }
+.steam { fill: none; stroke: #e09070; stroke-width: 4; stroke-linecap: round; opacity: 0.8; }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<svg width="72" height="80" viewBox="0 0 90 100">
+  <path class="steam" d="M32 30 Q27 20 32 13 Q37 6 32 0"/>
+  <path class="steam" d="M45 30 Q40 20 45 13 Q50 6 45 0" opacity="0.6"/>
+  <path class="steam" d="M58 30 Q53 20 58 13 Q63 6 58 0" opacity="0.4"/>
+  <rect x="18" y="38" width="50" height="46" rx="8" class="cup-body"/>
+  <rect x="23" y="43" width="40" height="11" rx="4" class="cup-coffee"/>
+  <path d="M68 46 Q86 46 86 62 Q86 78 68 78" class="cup-handle"/>
+  <rect x="10" y="86" width="66" height="8" rx="4" fill="#c47a5a" opacity="0.5"/>
+</svg>
+</body>
+</html>

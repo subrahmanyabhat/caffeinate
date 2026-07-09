@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1280px; height: 800px;
+  background: #0a0503;
+  display: flex; align-items: center; justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+.glow {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,122,90,0.18) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.scene { display: flex; align-items: center; gap: 80px; position: relative; z-index: 1; }
+
+.popup {
+  width: 336px; background: #1e1108; border-radius: 18px;
+  border: 1px solid #3d2518; overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), 0 0 60px rgba(196,122,90,0.15);
+}
+.wrap { padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 12px; }
+header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.header-left { display: flex; align-items: center; gap: 9px; }
+.title { font-size: 17px; font-weight: 700; color: #efe0cc; }
+.badge-on { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 5px 14px; border-radius: 20px; background: #c47a5a; color: #fff; border: 1px solid #c47a5a; }
+.badge-dot-on { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.85); }
+
+.status-card-on {
+  background: #2e1508; border-radius: 16px; padding: 18px 16px;
+  display: flex; align-items: center; gap: 16px;
+  border: 1px solid #c47a5a44;
+}
+.status-big { font-size: 26px; font-weight: 700; font-family: Georgia, serif; color: #efe0cc; margin-bottom: 5px; }
+.status-sub { font-size: 13px; color: #9a7a68; }
+
+.cup-body-on { fill: #c47a5a; }
+.cup-coffee-on { fill: #e08050; }
+.cup-handle-on { fill: none; stroke: #c47a5a; stroke-width: 5; }
+.steam { fill: none; stroke: #c47a5a; stroke-width: 3; stroke-linecap: round; opacity: 0.6; }
+.cup-sm .cup-body { fill: #7a5840; }
+.cup-sm .cup-coffee { fill: #a07050; }
+.cup-sm .cup-handle { stroke: #7a5840; fill: none; stroke-width: 5; }
+
+.section-label { font-size: 11px; font-weight: 700; color: #7a5e4a; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: -4px; }
+.timer-row { display: flex; gap: 6px; }
+.timer-btn { flex: 1; padding: 12px 0; border-radius: 12px; border: 1px solid #3d2518; background: #271508; color: #9a7a68; font-size: 14px; font-weight: 600; text-align: center; }
+.timer-btn.active { border-color: #c47a5a; background: #c47a5a; color: #fff; font-weight: 700; }
+.option-card { background: #271508; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #3d2518; }
+.option-name { font-size: 14px; font-weight: 600; color: #efe0cc; margin-bottom: 3px; }
+.option-desc { font-size: 11px; color: #7a5e4a; }
+.toggle-on { width: 48px; height: 28px; border-radius: 14px; background: #c47a5a; position: relative; }
+.toggle-on::after { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background: #fff; top: 4px; left: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+footer { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 13px; border-top: 1px solid rgba(255,255,255,0.06); }
+.countdown { font-size: 13px; color: #7a5e4a; font-weight: 500; }
+.countdown .n { color: #c47a5a; font-size: 15px; font-weight: 700; }
+.support-link { font-size: 11px; font-weight: 500; color: #7a5e4a; }
+
+/* Right copy */
+.copy { color: #efe0cc; max-width: 380px; }
+.copy-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c47a5a; background: rgba(196,122,90,0.12); border: 1px solid rgba(196,122,90,0.25); border-radius: 20px; padding: 4px 14px; margin-bottom: 24px; }
+.copy h1 { font-size: 48px; font-weight: 300; letter-spacing: -0.03em; line-height: 1.1; color: #efe0cc; margin-bottom: 16px; font-family: Georgia, serif; }
+.copy h1 strong { font-weight: 700; color: #c47a5a; }
+.copy p { font-size: 18px; color: #7a5e4a; line-height: 1.6; margin-bottom: 32px; }
+.status-pill { display: inline-flex; align-items: center; gap: 10px; background: rgba(196,122,90,0.1); border: 1px solid rgba(196,122,90,0.3); border-radius: 14px; padding: 14px 20px; margin-bottom: 24px; }
+.status-dot { width: 10px; height: 10px; border-radius: 50%; background: #c47a5a; box-shadow: 0 0 10px #c47a5a; }
+.status-pill-text { font-size: 16px; color: #c47a5a; font-weight: 600; }
+.timer-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.timer-pill { background: rgba(196,122,90,0.08); border: 1px solid rgba(196,122,90,0.2); border-radius: 10px; padding: 8px 16px; color: #9a7a68; font-size: 14px; font-weight: 600; }
+.timer-pill.sel { background: #c47a5a; border-color: #c47a5a; color: #fff; }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="scene">
+  <div class="popup">
+    <div class="wrap">
+      <header>
+        <div class="header-left">
+          <svg class="cup cup-sm" width="26" height="29" viewBox="0 0 90 100">
+            <rect x="22" y="40" width="46" height="42" rx="6" class="cup-body" style="fill:#7a5840"/>
+            <rect x="26" y="44" width="38" height="9" rx="3" style="fill:#a07050"/>
+            <path d="M68 48 Q82 48 82 60 Q82 72 68 72" style="fill:none;stroke:#7a5840;stroke-width:5"/>
+          </svg>
+          <span class="title">Caffeinate</span>
+        </div>
+        <div class="badge-on"><div class="badge-dot-on"></div><span>ON</span></div>
+      </header>
+      <div class="status-card-on">
+        <svg width="56" height="62" viewBox="0 0 90 100">
+          <path class="steam" d="M32 30 Q28 22 32 16 Q36 10 32 4" style="opacity:0.7"/>
+          <path class="steam" d="M45 30 Q41 22 45 16 Q49 10 45 4" style="opacity:0.5"/>
+          <path class="steam" d="M58 30 Q54 22 58 16 Q62 10 58 4" style="opacity:0.6"/>
+          <rect x="22" y="40" width="46" height="42" rx="6" class="cup-body-on"/>
+          <rect x="26" y="44" width="38" height="9" rx="3" class="cup-coffee-on"/>
+          <path d="M68 48 Q82 48 82 60 Q82 72 68 72" class="cup-handle-on"/>
+        </svg>
+        <div>
+          <div class="status-big">Caffeinated</div>
+          <div class="status-sub">Your screen is staying awake</div>
+        </div>
+      </div>
+      <div class="section-label">Stop after</div>
+      <div class="timer-row">
+        <div class="timer-btn">30m</div>
+        <div class="timer-btn active">1h</div>
+        <div class="timer-btn">2h</div>
+        <div class="timer-btn">4h</div>
+        <div class="timer-btn">∞</div>
+      </div>
+      <div class="option-card">
+        <div><div class="option-name">Keep screen lit</div><div class="option-desc">Display stays on, not just the system</div></div>
+        <div class="toggle-on"></div>
+      </div>
+    </div>
+    <footer>
+      <span class="countdown"><span class="n">58m 32s</span> left</span>
+      <span class="support-link">Made with ❤️ · Support developer</span>
+    </footer>
+  </div>
+
+  <div class="copy">
+    <div class="copy-badge">Now Active</div>
+    <h1>Screen stays<br><strong>on. Always.</strong></h1>
+    <p>Set a timer and forget it.<br>Caffeinate handles the rest.</p>
+    <div class="status-pill">
+      <div class="status-dot"></div>
+      <span class="status-pill-text">Caffeinated — 58m 32s remaining</span>
+    </div>
+    <div class="timer-pills">
+      <div class="timer-pill">30 min</div>
+      <div class="timer-pill sel">1 hour</div>
+      <div class="timer-pill">2 hours</div>
+      <div class="timer-pill">4 hours</div>
+      <div class="timer-pill">Forever ∞</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
